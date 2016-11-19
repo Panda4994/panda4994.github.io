@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Minecraft Commandstacker</title>
+		<style rel="stylesheet" type="text/css">
+		body {
+		 font-family: Arial, Helvetica, sans-serif;
+		 font-size: 17px;
+		}
+		</style>
+	</head>
+	<body {font-family: Sans-Serif;}>
+		<h4>Be aware that using this tool requires JavaScript</h4>
+		<form name="GENC_Form">
+			<table width="100%">
+				<tr>
+					<td style="width: 50%"><label>Input</label></td>
+					<td style="width: 50%"><label id="GENC_Output_L">Output</label></td>
+				</tr>
+				<tr>
+					<td>
+						<textarea id="GENC_Input" style="resize:none; height:3in; width:100%; font-family: monospace" wrap="off" title="Enter a list of command here">
+# Write your commands here
+# They will be executed in the order you put them in
+
+# You can make long single commands more readable
+# by spreading them over several lines.
+# Just add any kind of white space in front of a
+# line that should be added to the previous one.
+
+# Tested for Minecraft 15w42a</textarea>
+					</td>
+					<td>
+						<textarea id="GENC_Output" style="resize:none; height:3in; width:100%; font-family:monospace" wrap="off" title="Output will appear here"></textarea>
+					</td>
+				</tr>
+			</table>
+			Remove afterwards:<br>
+			<input type="radio" name="GENC_Clean" value="Carts" checked>Minecarts<br>
+			<input type="radio" name="GENC_Clean" value="All">Minecarts and command block<br>
+			<input type="button" name="GENC_Start" value="Generate Command" onClick="GENC_Generate();">
+		</form>
+
+
+		<script type="text/javascript">
+			if (typeof String.prototype.startsWith != 'function') {
+				String.prototype.startsWith = function (str){
+					return this.slice(0, str.length) == str;
+				};
+			}
+			if (typeof String.prototype.endsWith !== 'function') {
+				String.prototype.endsWith = function(suffix) {
+					return this.indexOf(suffix, this.length - suffix.length) !== -1;
+				};
+			}
+
+			var GENC_Begin="/summon falling_block ~ ~1.5 ~ {Motion:[0.0d,-1.0d,0.0d],Time:1,DropItem:0,Block:redstone_block,Passengers:[\n\t{id:falling_block,Time:1,DropItem:0,Block:activator_rail}";
+			var GENC_Front=",\n\t{id:commandblock_minecart,Command:";
+			var GENC_End="}";
+			var GENC_Finish="\n]}";
+			var GENC_CleanBlocks=["setblock ~ ~-2 ~ command_block 0 replace {SuccessCount:0b,auto:1b,Command:fill ~ ~ ~ ~ ~2 ~ air}"];
+			var GENC_CleanCarts=["kill @e[type=commandblock_minecart,r=0]"];
+
+			function GENC_GenCommand(commands) {
+				var res = GENC_Begin;
+				for (var i = 0; i < commands.length; i++) {
+					var escaped = commands[i].replace(/\\/g,"\\\\").replace(/\"/g,"\\\"");
+					if (escaped === commands[i]) {
+						res += GENC_Front + escaped + GENC_End;
+					} else {
+						res += GENC_Front + "\"" + escaped + "\"" + GENC_End;
+					}
+				}
+				res += GENC_Finish;
+				return res;
+			}
+
+			function GENC_Generate(){
+				var input = document.getElementById("GENC_Input").value;
+				var inarr = input.split("\n");
+				var arr = []
+				var startsWithW = /^\s/
+				var cleantype = "";
+				var endtype = "";
+				for (var i = 0; i < inarr.length; i++) {
+					var trimmed = inarr[i].trim();
+					if (trimmed != ""  && !(trimmed.startsWith("#") || trimmed.startsWith("//") || trimmed.startsWith("--"))) {
+						if (startsWithW.test(inarr[i]) || inarr[i].startsWith("}") || inarr[i].startsWith("{")) {
+							arr[arr.length-1] += trimmed;
+						} else {
+							if (inarr[i].endsWith(" ")) {
+								trimmed += " ";
+							}
+							arr.push(trimmed);
+						}
+					}
+				}
+				cleantype = document.GENC_Form.GENC_Clean.value;
+				if (cleantype === "All") {
+					arr = arr.concat(GENC_CleanBlocks);
+				}
+				arr = arr.concat(GENC_CleanCarts);
+				var res = GENC_GenCommand(arr);
+				document.getElementById("GENC_Output").value = res;
+				var len = res.length;
+				document.getElementById("GENC_Output_L").innerHTML = "Output (" + len + " of 32500 characters)";
+			}
+		</script>
+
+
+		<div style="text-align:left; padding:10px;">
+			<b>This tool helps to execute several commands in a single command block</b><br>
+			Just write the list of commands in the textarea on the left separated by new lines.<br>
+			Press "Generate" and copy the output on the right side into a command block.<br><br>
+			Lines starting with #, // and -- will be ignored as well as empty lines.<br><br>
+			Lines that start with { or } or any kind of whitespace will be added to the previous line. Note that the space at the beginning of the line will be removed. To add space you can add one at the end of the previous line.<br><br>
+			If a command contains any " or \ it will suround the command with " and turn all " in the commands into \" and all \ into \\. <br>
+			This is so that Minecraft (hopefully) places exactly the command you entered into the Minecart.<br><br>
+			Explanation of the tool by <a target="_blank" href=https://www.youtube.com/LapisDemon>Meri the LapisDemon</a>: <a target="_blank" href=https://www.youtube.com/watch?v=N_-UOtfge_k>https://www.youtube.com/watch?v=N_-UOtfge_k</a><br><br>
+			By <a target="_blank" href=https://www.youtube.com/Panda4994>Panda4994</a><br><br><br>
+			I do not take any responsibility in case anything in your world breaks while using this tool. Use on your own account.<br><br>
+		</div>
+	</body>
+<html>
