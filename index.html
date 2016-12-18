@@ -66,7 +66,7 @@
 				var res = GENC_Begin;
 				for (var i = 0; i < commands.length; i++) {
 					var escaped = commands[i].replace(/\\/g,"\\\\").replace(/\"/g,"\\\"");
-					if (escaped === commands[i]) {
+					if (escaped === commands[i] && commands[i].search(",") < 0) {
 						res += GENC_Front + escaped + GENC_End;
 					} else {
 						res += GENC_Front + "\"" + escaped + "\"" + GENC_End;
@@ -115,7 +115,7 @@
 			Press "Generate" and copy the output on the right side into a command block.<br><br>
 			Lines starting with #, // and -- will be ignored as well as empty lines.<br><br>
 			Lines that start with { or } or any kind of whitespace will be added to the previous line. Note that the space at the beginning of the line will be removed. To add space you can add one at the end of the previous line.<br><br>
-			If a command contains any " or \ it will suround the command with " and turn all " in the commands into \" and all \ into \\. <br>
+			If a command contains any ", \ or , it will suround the command with " and turn all " in the commands into \" and all \ into \\. <br>
 			This is so that Minecraft (hopefully) places exactly the command you entered into the Minecart.<br><br>
 			Explanation of the tool by <a target="_blank" href=https://www.youtube.com/LapisDemon>Meri the LapisDemon</a>: <a target="_blank" href=https://www.youtube.com/watch?v=N_-UOtfge_k>https://www.youtube.com/watch?v=N_-UOtfge_k</a><br><br>
 			By <a target="_blank" href=https://www.youtube.com/Panda4994>Panda4994</a><br><br><br>
