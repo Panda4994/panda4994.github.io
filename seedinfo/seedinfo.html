@@ -1,0 +1,129 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Minecraft Seedtype Info</title>
+  <meta name="description" content="Displays information about how a seed was entered when creating a Minecraft World">
+  <meta name="author" content="Panda4994">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+    body {
+      background-image: url("img/options_background.png");
+      background-repeat: repeat;
+      text-align: center;
+    }
+    .mcfield {
+      width: 40%;
+      padding: 10px;
+      font-size: 20px;
+      background-color: #000000;
+      color: #ffffff;
+      border-style: solid;
+      border-width: 3px;
+      border-color: #a0a0a0;
+    }
+    .mcbtn {
+      width: 20%;
+      padding: 10px;
+      font-size: 20px;
+      background-color: #a0a0a0;
+      color: #ffffff;
+      border-style: solid;
+      border-width: 3px;
+      border-color: #000000;
+    }
+    .mcbox {
+      width: 40%;
+      height: 400px;
+      padding: 10px;
+      font-size: 20px;
+      background-color: #000000;
+      color: #ffffff;
+      border-style: solid;
+      border-width: 3px;
+      border-color: #0f0f0f;
+    }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
+  <input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
+  <textarea class="mcbox" id="mcout">test</textarea><br>
+  <br>
+  <script src="js/BigInteger.min.js"></script>
+  <script src="js/Random.js"></script>
+  <script src="js/SeedInfo.js"></script>
+  <script>
+	document.getElementById("subIn").addEventListener("click", function(ev) {
+		var mcout = document.getElementById("mcout");
+		mcout.value = "";
+		var si = checkSeed(document.getElementById("seedIn").value);
+		mcout.value += "Seed: " + si.seed.toString() + "\n";
+		if (si.outOfRange) {
+			mcout.value += "This seed it seen as text because the entered number is out of range.\n";
+		}
+		if (si.byString) {
+			mcout.value += "This seed comes most likely from a text.\n";
+			if (si.enteredString) {
+				mcout.value += "Duh. You entered a string.\n";
+			}
+		}
+		if (si.byRandom) {
+			mcout.value += "This seed could have been randomly generated.\n";
+			if (!si.byString) {
+				mcout.value += "This is mostliely the case.\n";
+			}
+			
+		}
+		if (si.byNumber) {
+			mcout.value += "This seed could have been created by entering a number.\n";
+			mcout.value += "The only seed that can not be created like that is seed 0.\n";
+		} else {
+			mcout.value += "This is the only seed that you can't generate by entering it as a number.\n";
+		}
+	}, false);
+	//document.write(stringHash("AA"))
+	/*var rand = new Random(0);
+	document.write("Seed: " + rand.getSeed().toString(16) + "<br>");
+	var nl = rand.nextLongv();
+	var test = fromLong(nl);
+	rand.setOrgSeed(test);
+//	rand.previous();
+	rand.previous();
+	document.write("Seed: " + rand.getSeed().toString(16) + "<br>");
+	document.write("L1: " + nl.toString(16) + "<br>");
+	document.write("L2: " + rand.nextLong().toString(16) + "<br>");
+	//document.write(test.toString() + "<br>");
+	var rand = new Random(42000000);
+	//rand.nextLongv();
+	rand = new Random(0);
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	rand = new Random(42);
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	rand = new Random(13371337);
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	rand.previous();
+	document.write(rand.nextInt().toString() + "<br>");
+	/*for (var i=0; i<100; i++) {
+		document.write(rand.nextLong().toString() + "<br>");
+	}*/
+  </script>
+</body>
+</html>
