@@ -11,12 +11,17 @@
   <link rel="stylesheet" href="css/styles.css?v=1.0">
   <style>
     body {
-      background-image: url("img/options_background.png");
+      background-image: url("img/background.png");
       background-repeat: repeat;
       text-align: center;
     }
+    .maindiv {
+      text-align: center;
+      padding: 60px 25%;
+    }
     .mcfield {
-      width: 40%;
+      _width: 40%;
+      width: -moz-available;
       padding: 10px;
       font-size: 20px;
       background-color: #000000;
@@ -24,19 +29,24 @@
       border-style: solid;
       border-width: 3px;
       border-color: #a0a0a0;
+      _margin-top: 60px;
     }
     .mcbtn {
-      width: 20%;
+      width: 300px;
       padding: 10px;
       font-size: 20px;
       background-color: #a0a0a0;
       color: #ffffff;
-      border-style: solid;
-      border-width: 3px;
-      border-color: #000000;
+      border-style: none;
+      margin: 40px 0px;
+      background-image: url("img/button.png");
+      background-size: 100% 100%;
+    }
+    .mcbtn:hover {
+      background-image: url("img/button_hover.png");
     }
     .mcbox {
-      width: 40%;
+      width: 100%;
       height: 400px;
       padding: 10px;
       font-size: 20px;
@@ -46,6 +56,59 @@
       border-width: 3px;
       border-color: #0f0f0f;
     }
+    .mcbox2 {
+      _width: 40%;
+      height: auto;
+      min-height: 400px;
+      padding: 0px;
+      font-size: 20px;
+      background-color: #000000;
+      color: #ffffff;
+      border-style: solid;
+      border-width: 3px;
+      border-color: #0f0f0f;
+      margin: 0px auto;
+    }
+    .listelement {
+      background-color: #dd0000;
+      _height: 128px;
+      padding: 10px;
+      margin: 10px;
+      border-style: solid;
+      border-color: #a0a0a0;
+      _display: none;
+      text-align: left;
+      overflow: auto;
+    }
+    .listimg {
+      float: left;
+      margin-right: 10px;
+    }
+    .listdesc {
+      float: initial;
+      padding: 0px 5px;
+    }
+    .listhead {
+      font-size: 30px;
+    }
+    .listtext {
+    }
+    @media only screen and (max-width: 360px) {
+      .listimg {
+        display: none;
+      }
+    }
+    @media only screen and (max-width: 1080px) {
+      .maindiv {
+        padding: 60px 0%;
+      }
+      .listhead {
+        font-size: 20px;
+      }
+      .listtext {
+        font-size: 16px;
+      }
+    }
   </style>
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -53,10 +116,25 @@
 </head>
 
 <body>
-  <input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
-  <input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
-  <textarea class="mcbox" id="mcout">test</textarea><br>
-  <br>
+  <div class="maindiv">
+    <input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
+    <input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
+    <div class="mcbox2">
+      <div class="listelement">
+        <img class="listimg" src="img/background.png"></img>
+        <div class="listdesc">
+          <div class="listhead">By Text</div>
+          <div class="listtext">This seed can be created by entering a Text.<br>This is mostlikely how it was created. <span class="orgseed">test</span></div>
+        </div>
+      </div>
+      <div class="listelement">test</div>
+      <div class="listelement">test</div>
+      <div class="listelement">test</div>
+      <div class="listelement">test</div>
+    </div><br>
+    <textarea class="mcbox" id="mcout"></textarea><br>
+    <br>
+  </div>
   <script src="js/BigInteger.min.js"></script>
   <script src="js/Random.js"></script>
   <script src="js/SeedInfo.js"></script>
@@ -80,7 +158,6 @@
 			if (!si.byString) {
 				mcout.value += "This is mostliely the case.\n";
 			}
-			
 		}
 		if (si.byNumber) {
 			mcout.value += "This seed could have been created by entering a number.\n";
@@ -89,41 +166,6 @@
 			mcout.value += "This is the only seed that you can't generate by entering it as a number.\n";
 		}
 	}, false);
-	//document.write(stringHash("AA"))
-	/*var rand = new Random(0);
-	document.write("Seed: " + rand.getSeed().toString(16) + "<br>");
-	var nl = rand.nextLongv();
-	var test = fromLong(nl);
-	rand.setOrgSeed(test);
-//	rand.previous();
-	rand.previous();
-	document.write("Seed: " + rand.getSeed().toString(16) + "<br>");
-	document.write("L1: " + nl.toString(16) + "<br>");
-	document.write("L2: " + rand.nextLong().toString(16) + "<br>");
-	//document.write(test.toString() + "<br>");
-	var rand = new Random(42000000);
-	//rand.nextLongv();
-	rand = new Random(0);
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	rand = new Random(42);
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	rand = new Random(13371337);
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	rand.previous();
-	document.write(rand.nextInt().toString() + "<br>");
-	/*for (var i=0; i<100; i++) {
-		document.write(rand.nextLong().toString() + "<br>");
-	}*/
-  </script>
+    </script>
 </body>
 </html>
