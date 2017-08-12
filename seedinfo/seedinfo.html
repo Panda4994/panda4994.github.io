@@ -137,12 +137,13 @@
   </div>
   <script src="js/BigInteger.min.js"></script>
   <script src="js/Random.js"></script>
+  <script src="js/NumHelper.js"></script>
   <script src="js/SeedInfo.js"></script>
   <script>
 	document.getElementById("subIn").addEventListener("click", function(ev) {
 		var mcout = document.getElementById("mcout");
 		mcout.value = "";
-		var si = checkSeed(document.getElementById("seedIn").value);
+		var si = seedInfo(document.getElementById("seedIn").value);
 		mcout.value += "Seed: " + si.seed.toString() + "\n";
 		if (si.outOfRange) {
 			mcout.value += "This seed it seen as text because the entered number is out of range.\n";
@@ -157,6 +158,10 @@
 			mcout.value += "This seed could have been randomly generated.\n";
 			if (!si.byString) {
 				mcout.value += "This is mostliely the case.\n";
+			}
+			mcout.value += si.time.toString();
+			if ((new Date(si.time.toJSNumber())).getTime() > 0) {
+				mcout.value += new Date(si.time.toJSNumber()) + "\n";
 			}
 		}
 		if (si.byNumber) {
