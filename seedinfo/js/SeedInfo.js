@@ -152,14 +152,14 @@ var showSeedInfo = (function(undefined) {
 			setDisplayById("notByNumber", "inherit");
 		}
 		if (info.byText) {
+			if (info.enteredText) {
+				setDisplayByClassName("opttext enteredText", "inherit");
+			}
 			for (var i=0; i<20; i++) {
 				setValueByClassName("textseed " + (i+1), info.strings[i]);
 			}
 			setDisplayById("byText", "inherit");
 		} else {
-			if (info.enteredText) {
-				setDisplayByClassName("opttext enteredText", "inherit");
-			}
 			setDisplayById("notByText", "inherit");
 		}
 		if (info.byRandom) {
