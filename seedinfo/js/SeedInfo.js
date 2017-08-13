@@ -153,7 +153,7 @@ var showSeedInfo = (function(undefined) {
 		}
 		if (info.byText) {
 			if (info.enteredText) {
-				setDisplayByClassName("opttext enteredText", "inherit");
+				setDisplayByClassName("opttext enteredText", "inline");
 			}
 			for (var i=0; i<20; i++) {
 				setValueByClassName("textseed " + (i+1), info.strings[i]);
