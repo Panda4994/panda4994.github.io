@@ -43,7 +43,7 @@
       background-size: 100% 100%;
     }
     .mcbtn:hover {
-      background-image: url("img/button_hover.png");
+      _background-image: url("img/button_hover.png");
     }
     .mcbox {
       width: 100%;
@@ -70,7 +70,6 @@
       margin: 0px auto;
     }
     .listelement {
-      background-color: #dd0000;
       _height: 128px;
       padding: 10px;
       margin: 10px;
@@ -79,6 +78,40 @@
       _display: none;
       text-align: left;
       overflow: auto;
+    }
+    .listelement.yes {
+      background-color: #00aa00;
+      display: none;
+    }
+    .listelement.no {
+      background-color: #aa0000;
+      display: none;
+    }
+    .listelement.info {
+      background-color: #0000aa;
+      display: none;
+    }
+    .listelement.special {
+      background-color: #aaaa00;
+      display: none;
+    }
+    .textseed {
+      background-color: #666666;
+      padding: 0px 2px;
+      font-size: 16px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 2%;
+      border-color: #999999;
+    }
+    .numseed {
+      background-color: #666666;
+      padding: 0px 2px;
+      font-size: 16px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 2%;
+      border-color: #999999;
     }
     .listimg {
       float: left;
@@ -93,12 +126,14 @@
     }
     .listtext {
     }
-    @media only screen and (max-width: 360px) {
+    @media only screen and (max-width: 420px) {
       .listimg {
-        display: none;
+        _display: none;
+        height: 30%;
+        width: 30%;
       }
     }
-    @media only screen and (max-width: 1080px) {
+    @media only screen and (max-width: 950px) {
       .maindiv {
         padding: 60px 0%;
       }
@@ -114,63 +149,219 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
 </head>
-
 <body>
-  <div class="maindiv">
-    <input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
-    <input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
-    <div class="mcbox2">
-      <div class="listelement">
-        <img class="listimg" src="img/background.png"></img>
-        <div class="listdesc">
-          <div class="listhead">By Text</div>
-          <div class="listtext">This seed can be created by entering a Text.<br>This is mostlikely how it was created. <span class="orgseed">test</span></div>
-        </div>
-      </div>
-      <div class="listelement">test</div>
-      <div class="listelement">test</div>
-      <div class="listelement">test</div>
-      <div class="listelement">test</div>
-    </div><br>
-    <textarea class="mcbox" id="mcout"></textarea><br>
-    <br>
-  </div>
-  <script src="js/BigInteger.min.js"></script>
-  <script src="js/Random.js"></script>
-  <script src="js/NumHelper.js"></script>
-  <script src="js/SeedInfo.js"></script>
-  <script>
+	<div class="maindiv">
+		<input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
+		<input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
+		<div class="mcbox2">
+			<div class="listelement info" id="enteredText">
+				<img class="listimg" src="img/logo_infoi.png"></img>
+				<div class="listdesc">
+					<div class="listhead">You entered a text</div>
+					<div class="listtext">
+						When entering a text into the seed field Minecraft will calculate a number from that. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formular)</a><br>
+						Your seed as a number is: <span class="numseed seed"></span><br>
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="enteredOutOfRange">
+				<img class="listimg" src="img/logo_infoi.png"></img>
+				<div class="listdesc">
+					<div class="listhead">You entered a number but it's taken as a text</div>
+					<div class="listtext">
+						You entered a number but it is too big or too small.<br>
+						In this case the number is threaded like a text and a smaller number is calculated from it. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formular)</a><br>
+						So your seed as a valid number is: <span class="numseed seed"></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="enteredZero">
+				<img class="listimg" src="img/logo_infoi.png"></img>
+				<div class="listdesc">
+					<div class="listhead">You entered <span class="numseed seed">0</span></div>
+					<div class="listtext">
+						This is quite a special seed. Usually Minecraft would generate a random seed in this case, but I will make an exception here so you can see the other information :-)<br>
+						Seed: <span class="numseed seed">0</span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="enteredNumber">
+				<img class="listimg" src="img/logo_infoi.png"></img>
+				<div class="listdesc">
+					<div class="listhead">You entered a valid number</div>
+					<div class="listtext">
+						The number is just taken as the seed, nothing special about it.<br>
+						Seed: <span class="numseed seed"></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="enteredNothing">
+				<img class="listimg" src="img/logo_infoi.png"></img>
+				<div class="listdesc">
+					<div class="listhead">You entered nothing</div>
+					<div class="listtext">
+						So I generated a random seed for you :-)<br>
+						Seed: <span class="numseed seed"></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed42">
+				<img class="listimg" src="img/logo_seed42.png"></img>
+				<div class="listdesc">
+					<div class="listhead">The meaning of life the universe and everything</div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed4815162342">
+				<img class="listimg" src="img/logo_seedlost.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Those numbers from Lost</div>
+					<div class="listtext">No idea what this is about, but here you got an easteregg with it :-)</div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed666">
+				<img class="listimg" src="img/logo_seed666.png"></img>
+				<div class="listdesc">
+					<div class="listhead">The number of the beast</div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed13">
+				<img class="listimg" src="img/logo_seed13.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Good luck with that world...</div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed1337">
+				<img class="listimg" src="img/logo_seed1337.png"></img>
+				<div class="listdesc">
+					<div class="listhead">1337 533d</div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed404">
+				<img class="listimg" src="img/logo_seed404.png"></img>
+				<div class="listdesc">
+					<div class="listhead">404 - Seed not found</div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement special" id="seed9001">
+				<img class="listimg" src="img/logo_seed9001.png"></img>
+				<div class="listdesc">
+					<div class="listhead"><b>IT'S OVER 9000</b></div>
+					<div class="listtext"></div>
+				</div>
+			</div>
+			<div class="listelement yes" id="byText">
+				<img class="listimg" src="img/logo_text.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Possible by text<span class="opttext enteredText"> (Duh! You entered a text)</span></div>
+					<div class="listtext">
+						It is possible to get this seed by entering a text.<br>
+						<b>This is the most probabal source of this seed.</b><br>
+						Some texts you could use: <span class="textseed 1"></span> <span class="textseed 2"></span> <span class="textseed 3"></span> <span class="textseed 4"></span> <span class="textseed 5"></span> <span class="textseed 6"></span> <span class="textseed 7"></span> <span class="textseed 8"></span> <span class="textseed 9"></span> <span class="textseed 10"></span> <span class="textseed 11"></span> <span class="textseed 12"></span> <span class="textseed 13"></span> <span class="textseed 14"></span> <span class="textseed 15"></span> <span class="textseed 16"></span> <span class="textseed 17"></span> <span class="textseed 18"></span> <span class="textseed 19"></span> <span class="textseed 20"></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement no" id="notByText">
+				<img class="listimg" src="img/logo_notext.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Not possible by text</div>
+					<div class="listtext">There is no text that would create this seed.</div>
+				</div>
+			</div>
+			<div class="listelement yes" id="byRandom">
+				<img class="listimg" src="img/logo_random.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Possible by random choice</div>
+					<div class="listtext">
+						It is possible to get this seed by entering nothing or <span class="numseed zero">0</span>.<br>
+						In these cases Minecraft will randomly generate a seed. Your seed could have been the result of that.<br>
+						<span class="opttext randomLikely"><b>This is the most probabal source of this seed.</b></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement no" id="notByRandom">
+				<img class="listimg" src="img/logo_norandom.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Not possible by random choice</div>
+					<div class="listtext">
+						Letting the game choose a random seed by entering nothing or <span class="numseed zero">0</span> will never result in this seed.<br>
+					</div>
+				</div>
+			</div>
+			<div class="listelement yes" id="byNumber">
+				<img class="listimg" src="img/logo_number.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Possible by entering it as a number</div>
+					<div class="listtext">
+						It is possible to get this seed by entering it as a number.<br>
+						This is true for all seeds except <span class="numseed zero">0</span>.<br>
+						<span class="opttext numberCertain"><b>This is the only way to get this seed!</b></span>
+					</div>
+				</div>
+			</div>
+			<div class="listelement no" id="notByNumber">
+				<img class="listimg" src="img/logo_nonumber.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Not possible by entering it as a number</div>
+					<div class="listtext">
+						It is not possible to get this seed by entering it as a number.<br>
+						<b>This is only true for seed <span class="numseed zero">0</span>!</b>
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="byTime">
+				<img class="listimg" src="img/logo_time.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Time of generation</div>
+					<div class="listtext">
+						This is mostly theoretical. But if you were to generate a new minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
+						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happend though.
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="similarSeeds">
+				<img class="listimg" src="img/logo_similar.png"></img>
+				<div class="listdesc">
+					<div class="listhead">It's one of 65536 similar seeds</div>
+					<div class="listtext">
+						This is true for every seed. The base for this seed is <span class="numseed base"></span>.<br>
+						Some of the similar seeds: <span class="numseed 1"></span> <span class="numseed 2"></span> <span class="numseed 3"></span> <span class="numseed 4"></span> <span class="numseed 5"></span> <span class="numseed 6"></span> <span class="numseed 7"></span> <span class="numseed 8"></span> <span class="numseed 9"></span> <span class="numseed 10"></span> <span class="numseed 11"></span> <span class="numseed 12"></span> <span class="numseed 13"></span> <span class="numseed 14"></span> <span class="numseed 15"></span> <span class="numseed 16"></span> <span class="numseed 17"></span> <span class="numseed 18"></span> <span class="numseed 19"></span> <span class="numseed 20"></span> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/BigInteger.min.js"></script>
+	<script src="js/Random.js"></script>
+	<script src="js/NumHelper.js"></script>
+	<script src="js/SeedInfo.js"></script>
+	<script>
+		var updateOnMouseOverSubIn = true;
+		var mouseOverSubIn = false;
+		var elem = document.getElementById("subIn");
+		elem.addEventListener("mouseover", mouseOver);
+		elem.addEventListener("mouseout", mouseOut);
+		function mouseOver() {
+			if (updateOnMouseOverSubIn) {
+				document.getElementById("subIn").style.backgroundImage = "url('img/button_hover.png')";
+			}
+			mouseOverSubIn = true;
+		}
+		function mouseOut() {
+			if (updateOnMouseOverSubIn) {
+				document.getElementById("subIn").style.backgroundImage = "url('img/button.png')";
+			}
+			mouseOverSubIn = false;
+		}
+
 	document.getElementById("subIn").addEventListener("click", function(ev) {
-		var mcout = document.getElementById("mcout");
-		mcout.value = "";
-		var si = seedInfo(document.getElementById("seedIn").value);
-		mcout.value += "Seed: " + si.seed.toString() + "\n";
-		if (si.outOfRange) {
-			mcout.value += "This seed it seen as text because the entered number is out of range.\n";
-		}
-		if (si.byString) {
-			mcout.value += "This seed comes most likely from a text.\n";
-			if (si.enteredString) {
-				mcout.value += "Duh. You entered a string.\n";
-			}
-		}
-		if (si.byRandom) {
-			mcout.value += "This seed could have been randomly generated.\n";
-			if (!si.byString) {
-				mcout.value += "This is mostliely the case.\n";
-			}
-			mcout.value += si.time.toString();
-			if ((new Date(si.time.toJSNumber())).getTime() > 0) {
-				mcout.value += new Date(si.time.toJSNumber()) + "\n";
-			}
-		}
-		if (si.byNumber) {
-			mcout.value += "This seed could have been created by entering a number.\n";
-			mcout.value += "The only seed that can not be created like that is seed 0.\n";
-		} else {
-			mcout.value += "This is the only seed that you can't generate by entering it as a number.\n";
-		}
+		showSeedInfo(document.getElementById("seedIn").value);
+		return;
 	}, false);
-    </script>
+	</script>
 </body>
 </html>
