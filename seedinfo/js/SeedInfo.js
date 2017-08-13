@@ -26,7 +26,7 @@ var seedInfo = (function(undefined) {
 			}
 		} else {
 			if (str === "") {
-				res.seed = bigInt(73);
+				res.seed = javaRandom(Math.floor(Math.random()*bigInt.one.shiftLeft(48))).nextLong();
 				res.enteredNothing = true;
 			} else {
 				res.seed = stringHash(str);
