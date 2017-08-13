@@ -176,6 +176,17 @@ var showSeedInfo = (function(undefined) {
 			setValueByClassName("numseed " + (i+1), info.similarSeeds[i].toString());
 		}
 		setDisplayById("similarSeeds", "inherit");
+		/*if (info.time) {
+			var date = new Date(info.time);
+			if (date) {
+				var start = new Date("2010-01-01T00:00:00Z");
+				var end = new Date();
+				if (date > start && date < end) {
+					setValueByClassName("genTime", date.toString());
+					setDisplayById("byTime", "inherit");
+				}
+			}
+		}*/
 
 		updateOnMouseOverSubIn = true;
 		if (mouseOverSubIn) {
@@ -190,6 +201,7 @@ var showSeedInfo = (function(undefined) {
 		setDisplayByClassName("listelement", "none");
 		setValueByClassName("numseed", "");
 		setValueByClassName("numseed zero", "0");
+		setValueByClassName("genTime", "");
 		updateOnMouseOverSubIn = false;
 		document.getElementById("subIn").style.backgroundImage = "url('img/button_clicked.png')";
 		setTimeout(doAndSet, 50, str);
