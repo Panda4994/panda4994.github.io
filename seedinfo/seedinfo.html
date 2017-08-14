@@ -70,6 +70,12 @@
       border-color: #0f0f0f;
       margin: 0px auto;
     }
+    .listloading {
+      padding: 10px;
+      margin: 10px;
+      border-style: none;
+      display: none;
+    }
     .listelement {
       _height: 128px;
       padding: 10px;
@@ -152,9 +158,12 @@
 </head>
 <body>
 	<div class="maindiv">
-		<input type="text" class="mcfield" placeholder="Seed..." id="seedIn"><br>
+		<input type="text" class="mcfield" placeholder="Seed..." id="seedIn" onkeypress="handleSeedInput(event)"><br>
 		<input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
 		<div class="mcbox2">
+			<div class="listloading" id="loading">
+				<img  src="img/loading.gif"></img>
+			</div>
 			<div class="listelement info" id="enteredText">
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
@@ -390,6 +399,15 @@
 	<script src="js/NumHelper.js"></script>
 	<script src="js/SeedInfo.js"></script>
 	<script>
+		var preloadedimages = [];
+		function preloadImage(source) {
+			var img = new Image();
+			img.src = source;
+			preloadedimages.push(img);
+		}
+		preloadImage("img/button_clicked.png");
+		preloadImage("img/button_hover.png");
+		preloadImage("img/button.png");
 		var updateOnMouseOverSubIn = true;
 		var mouseOverSubIn = false;
 		var elem = document.getElementById("subIn");
@@ -408,10 +426,14 @@
 			mouseOverSubIn = false;
 		}
 
-	document.getElementById("subIn").addEventListener("click", function(ev) {
-		showSeedInfo(document.getElementById("seedIn").value);
-		return;
-	}, false);
+		function handleSeedInput(ev) {
+			if (ev.keyCode === 13) {
+				showSeedInfo(document.getElementById("seedIn").value);
+			}
+		}
+		document.getElementById("subIn").addEventListener("click", function(ev) {
+			showSeedInfo(document.getElementById("seedIn").value);
+		}, false);
 	</script>
 </body>
 </html>

@@ -1,7 +1,5 @@
 /* TODO:
- - Trigger by pressing enter
  - loading gif
- - preload images
  - list with all similar seeds
  - check for typos
 */
@@ -209,9 +207,12 @@ var showSeedInfo = (function(undefined) {
 		} else {
 			document.getElementById("subIn").style.backgroundImage = "url('img/button.png')";
 		}
+		// *welp* the whole site is frozen, that includes gifs
+		//setDisplayById("loading", "none");
 	}
 
 	function doStuff(str) {
+		//setDisplayById("loading", "inherit");
 		setDisplayByClassName("opttext", "none");
 		setDisplayByClassName("listelement", "none");
 		setValueByClassName("numseed", "");
