@@ -1,9 +1,3 @@
-/* TODO:
- - loading gif
- - list with all similar seeds
- - check for typos
-*/
-
 var seedInfo = (function(undefined) {
 	"use strict";
 	var INT_MIN = bigInt.one.shiftLeft(31).negate();
