@@ -1,3 +1,11 @@
+/* TODO:
+ - Trigger by pressing enter
+ - loading gif
+ - preload images
+ - list with all similar seeds
+ - check for typos
+*/
+
 var seedInfo = (function(undefined) {
 	"use strict";
 	var INT_MIN = bigInt.one.shiftLeft(31).negate();
@@ -8,6 +16,7 @@ var seedInfo = (function(undefined) {
 
 	function checkSeed(str) {
 		var res = new Object();
+		res.str = str;
 		res.enteredText = false;
 		res.enteredNumber = false;
 		res.enteredNothing = false;
@@ -171,12 +180,18 @@ var showSeedInfo = (function(undefined) {
 			setDisplayById("notByRandom", "inherit");
 		}
 		setDisplayById("seed" + info.seed.toString(), "inherit");
+		if (info.str.toLowerCase() === "herobrine") {
+			setDisplayById("seedherobrine", "inherit");
+		}
+		if (info.str.toLowerCase() === "panda" || info.str.toLowerCase() === "panda4994") {
+			setDisplayById("seed4994", "inherit");
+		}
 		setValueByClassName("numseed base", info.baseSeed.toString());
 		for (var i=0; i<20; i++) {
 			setValueByClassName("numseed " + (i+1), info.similarSeeds[i].toString());
 		}
 		setDisplayById("similarSeeds", "inherit");
-		/*if (info.time) {
+		if (info.time) {
 			var date = new Date(info.time);
 			if (date) {
 				var start = new Date("2010-01-01T00:00:00Z");
@@ -186,7 +201,7 @@ var showSeedInfo = (function(undefined) {
 					setDisplayById("byTime", "inherit");
 				}
 			}
-		}*/
+		}
 
 		updateOnMouseOverSubIn = true;
 		if (mouseOverSubIn) {
