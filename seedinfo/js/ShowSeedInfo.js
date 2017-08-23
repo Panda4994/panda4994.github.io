@@ -109,7 +109,6 @@ var showSeedInfo = (function(undefined) {
 		} else {
 			document.getElementById("subIn").style.backgroundImage = "url('img/button.png')";
 		}
-		// *welp* the whole site is frozen, that includes gifs
 		setDisplayById("loading", "none");
 	}
 
