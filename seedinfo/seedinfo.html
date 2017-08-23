@@ -20,10 +20,7 @@
       padding: 60px 25%;
     }
     .mcfield {
-      _width: 40%;
-      _width: calc;
       width: 100%;
-      _width: -moz-available;
       padding: 10px;
       font-size: 20px;
       background-color: #000000;
@@ -31,7 +28,6 @@
       border-style: solid;
       border-width: 3px;
       border-color: #a0a0a0;
-      _margin-top: 60px;
     }
     .mcbtn {
       width: 300px;
@@ -43,9 +39,6 @@
       margin: 40px 0px;
       background-image: url("img/button.png");
       background-size: 100% 100%;
-    }
-    .mcbtn:hover {
-      _background-image: url("img/button_hover.png");
     }
     .mcbox {
       width: 100%;
@@ -59,7 +52,6 @@
       border-color: #0f0f0f;
     }
     .mcbox2 {
-      _width: 40%;
       height: auto;
       min-height: 800px;
       padding: 0px;
@@ -78,12 +70,11 @@
       display: none;
     }
     .listelement {
-      _height: 128px;
       padding: 10px;
       margin: 10px;
       border-style: solid;
       border-color: #a0a0a0;
-      _display: none;
+      display: none;
       text-align: left;
       overflow: auto;
     }
@@ -104,6 +95,15 @@
       display: none;
     }
     .textseed {
+      background-color: #666666;
+      padding: 0px 2px;
+      font-size: 16px;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 2%;
+      border-color: #999999;
+    }
+    .genTime {
       background-color: #666666;
       padding: 0px 2px;
       font-size: 16px;
@@ -136,7 +136,6 @@
     }
     @media only screen and (max-width: 420px) {
       .listimg {
-        _display: none;
         height: 30%;
         width: 30%;
       }
@@ -170,6 +169,16 @@
 						This tool shows some information about Minecraft seeds.<br>
 						It was made by <a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">Panda4994</a>.<br>
 						<a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">This video</a> can hopefully give you a rough idea what this is all about :-)
+					</div>
+				</div>
+			</div>
+			<div class="listelement info" id="longerThan32">
+				<img class="listimg" src="img/logo_redmark.png"></img>
+				<div class="listdesc">
+					<div class="listhead">The Limit is 32 letters!</div>
+					<div class="listtext">
+						When creating a Minecraft world you can not enter more than 32 letters as Seed in the GUI.<br>
+						This tool will ignore this limitation as you could enter longer seeds in the server.properties of a Minecraft Server.<br>
 					</div>
 				</div>
 			</div>
@@ -222,7 +231,7 @@
 				<div class="listdesc">
 					<div class="listhead">You entered nothing</div>
 					<div class="listtext">
-						So I generated a random seed for you :-)<br>
+						So I generated a random seed for you as Minecraft would do too :-)<br>
 						Seed: <span class="numseed seed"></span>
 					</div>
 				</div>
@@ -291,6 +300,7 @@
 				</div>
 			</div>
 			<div class="listelement special" id="seed69">
+				<img class="listimg" src="img/logo_seed69.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Oh come on. Grow up!</div>
 					<div class="listtext"></div>
@@ -394,6 +404,17 @@
 					</div>
 				</div>
 			</div>
+			<div class="listelement info" id="notByTime">
+				<img class="listimg" src="img/logo_notime.png"></img>
+				<div class="listdesc">
+					<div class="listhead">Time of generation</div>
+					<div class="listtext">
+						This is mostly theoretical. But if you were to generate a new Minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
+						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happened though.<br>
+						For your seed it's very obviously not true, looking at the date.<br>
+					</div>
+				</div>
+			</div>
 			<div class="listelement info" id="similarSeeds">
 				<img class="listimg" src="img/logo_similar.png"></img>
 				<div class="listdesc">
@@ -411,6 +432,7 @@
 	<script src="js/Random.js"></script>
 	<script src="js/NumHelper.js"></script>
 	<script src="js/SeedInfo.js"></script>
+	<script src="js/ShowSeedInfo.js"></script>
 	<script>
 		var preloadedimages = [];
 		function preloadImage(source) {

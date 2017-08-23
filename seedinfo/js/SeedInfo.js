@@ -9,57 +9,67 @@ var seedInfo = (function(undefined) {
 	function checkSeed(str) {
 		var res = new Object();
 		res.str = str;
+		res.longerThan32 = false;
+		if (str.length > 32) {
+			res.longerThan32 = true;
+		}
 		res.enteredText = false;
 		res.enteredNumber = false;
 		res.enteredNothing = false;
 		res.enteredZero = false;
 		res.outOfRange = false;
+		var seed;
+		var baseSeed;
+		var time;
+		var rand;
 		if (str.match("^[+-]?[0-9]+$") != null) {
-			res.seed = bigInt(str);
-			if (res.seed.leq(LONG_MIN) || res.seed.geq(LONG_MAX)) {
-				res.seed = stringHash(str);
+			seed = bigInt(str);
+			if (seed.leq(LONG_MIN) || seed.geq(LONG_MAX)) {
+				seed = stringHash(str);
 				res.outOfRange = true;
 			} else {
 				res.enteredNumber = true;
-				if (res.seed.eq(bigInt.zero)) {
+				if (seed.eq(bigInt.zero)) {
 					res.enteredZero = true;
 				}
 			}
 		} else {
 			if (str === "") {
-				res.seed = javaRandom(Math.floor(Math.random()*bigInt.one.shiftLeft(48))).nextLong();
+				seed = javaRandom(Math.floor(Math.random()*bigInt.one.shiftLeft(48))).nextLong();
 				res.enteredNothing = true;
 			} else {
-				res.seed = stringHash(str);
+				seed = stringHash(str);
 				res.enteredText = true;
 			}
 		}
 		res.byText = false;
 		res.byRandom = false;
 		res.byNumber = true;
-		res.time = undefined;
-		
-		if (res.seed.geq(INT_MIN) && res.seed.leq(INT_MAX)) {
+		res.time = undefined;	
+		if (seed.geq(INT_MIN) && seed.leq(INT_MAX)) {
 			res.byText = true;
-			res.strings = generateStrings(res.seed, "<", 10);
-			res.strings = res.strings.concat(generateStrings(res.seed, "`", 10));
+			res.strings = generateStrings(seed, "<", 10);
+			res.strings = res.strings.concat(generateStrings(seed, "`", 10));
 		}
-		if (res.seed.eq(bigInt.zero)) {
+		if (seed.eq(bigInt.zero)) {
 			res.byNumber = false;
 		}
-		res.rand = javaRandom.fromLong(res.seed);
-		if (res.rand != undefined) {
+		rand = javaRandom.fromLong(seed);
+		if (rand != undefined) {
 			res.byRandom = true;
-			res.time = res.rand.getSeed();
+			time = rand.getSeed();
+			res.time = time.toString();
 		}
-		res.baseSeed = numHelper.breakLong(res.seed).and(MASK48);
+		baseSeed = numHelper.breakLong(seed).and(MASK48);
 		res.similarSeeds = [];
 		for (var i=0; i<20; i++) {
-			res.similarSeeds.push(numHelper.fixLong(res.baseSeed.add(bigInt(Math.floor(Math.random() * 65536)).shiftLeft(48))));
+			res.similarSeeds.push(numHelper.fixLong(baseSeed.add(bigInt(Math.floor(Math.random() * 65536)).shiftLeft(48))).toString());
 		}
 		//for (var i=0; i<65536; i++) {
 		//	res.similarSeeds.push(res.baseSeed.add(bigInt(i).shiftLeft(48)));
 		//}
+		res.seed = seed.toString();
+		res.baseSeed = baseSeed.toString();
 		return res;
 	}
 
@@ -99,123 +109,4 @@ var seedInfo = (function(undefined) {
 	}
 
 	return checkSeed;
-})();
-
-var showSeedInfo = (function(undefined) {
-	function setDisplayByClassName(classname, display) {
-		var targets = document.getElementsByClassName(classname);
-		for (var i=0; i<targets.length; i++) {
-			targets[i].style.display = display;
-		}
-	}
-
-	function setValueByClassName(classname, value) {
-		var targets = document.getElementsByClassName(classname);
-		for (var i=0; i<targets.length; i++) {
-			while (targets[i].firstChild) {
-				targets[i].removeChild(targets[i].firstChild);
-			}
-			targets[i].appendChild(document.createTextNode(value));
-		}
-	}
-
-	function setDisplayById(id, display) {
-		var elem = document.getElementById(id);
-		if (elem) {
-			elem.style.display = display;
-		}
-	}
-
-	function doAndSet(str) {
-		var info = seedInfo(str);
-		setValueByClassName("numseed seed", info.seed.toString());
-		if (info.enteredZero) {
-			setDisplayById("enteredZero", "inherit");
-		}
-		if (info.enteredText) {
-			setDisplayById("enteredText", "inherit");
-		}
-		if (info.enteredNothing) {
-			setDisplayById("enteredNothing", "inherit");
-		}
-		if (info.enteredNumber && !info.enteredZero) {
-			setDisplayById("enteredNumber", "inherit");
-		}
-		if (info.outOfRange) {
-			setDisplayById("enteredOutOfRange", "inherit");
-		}
-		if (info.byNumber) {
-			if (!info.byText && !info.byRandom) {
-				setDisplayByClassName("opttext numberCertain", "inherit");
-			}
-			setDisplayById("byNumber", "inherit");
-		} else {
-			setDisplayById("notByNumber", "inherit");
-		}
-		if (info.byText) {
-			if (info.enteredText) {
-				setDisplayByClassName("opttext enteredText", "inline");
-			}
-			for (var i=0; i<20; i++) {
-				setValueByClassName("textseed " + (i+1), info.strings[i]);
-			}
-			setDisplayById("byText", "inherit");
-		} else {
-			setDisplayById("notByText", "inherit");
-		}
-		if (info.byRandom) {
-			if (!info.byText) {
-				setDisplayByClassName("opttext randomLikely", "inherit");
-			}
-			setDisplayById("byRandom", "inherit");
-		} else {
-			setDisplayById("notByRandom", "inherit");
-		}
-		setDisplayById("seed" + info.seed.toString(), "inherit");
-		if (info.str.toLowerCase() === "herobrine") {
-			setDisplayById("seedherobrine", "inherit");
-		}
-		if (info.str.toLowerCase() === "panda" || info.str.toLowerCase() === "panda4994") {
-			setDisplayById("seed4994", "inherit");
-		}
-		setValueByClassName("numseed base", info.baseSeed.toString());
-		for (var i=0; i<20; i++) {
-			setValueByClassName("numseed " + (i+1), info.similarSeeds[i].toString());
-		}
-		setDisplayById("similarSeeds", "inherit");
-		if (info.time) {
-			var date = new Date(info.time);
-			if (date) {
-				var start = new Date("2010-01-01T00:00:00Z");
-				var end = new Date();
-				if (date > start && date < end) {
-					setValueByClassName("genTime", date.toString());
-					setDisplayById("byTime", "inherit");
-				}
-			}
-		}
-
-		updateOnMouseOverSubIn = true;
-		if (mouseOverSubIn) {
-			document.getElementById("subIn").style.backgroundImage = "url('img/button_hover.png')";
-		} else {
-			document.getElementById("subIn").style.backgroundImage = "url('img/button.png')";
-		}
-		// *welp* the whole site is frozen, that includes gifs
-		//setDisplayById("loading", "none");
-	}
-
-	function doStuff(str) {
-		//setDisplayById("loading", "inherit");
-		setDisplayByClassName("opttext", "none");
-		setDisplayByClassName("listelement", "none");
-		setValueByClassName("numseed", "");
-		setValueByClassName("numseed zero", "0");
-		setValueByClassName("genTime", "");
-		updateOnMouseOverSubIn = false;
-		document.getElementById("subIn").style.backgroundImage = "url('img/button_clicked.png')";
-		setTimeout(doAndSet, 50, str);
-	}
-
-	return doStuff;
 })();
