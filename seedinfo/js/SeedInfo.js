@@ -86,7 +86,7 @@ var seedInfo = (function(undefined) {
 		var base = "";
 		while (res.length < amount) {
 			base += start;
-			var dist = numHelper.breakInt(seed).minus(numHelper.breakInt(stringHash(base)));
+			var dist = seed.minus(stringHash(base));
 			while (dist.lt(bigInt.zero)) {
 				dist = dist.add(bigInt.one.shiftLeft(32));
 			}
