@@ -16,18 +16,10 @@ var javaRandom = (function(seed) {
 	RandomClass.fromLong = function(l) {
 		var i1 = l.shiftRight(32).and(MASK32);
 		var i2 = l.and(MASK32);
-		var front = i1.shiftLeft(16);
-/*		for (var i=bigInt.zero; i.lt(TWO16); i = i.add(1)) {
-			var seed = front.or(i);
-			var i22 = seed.times(MULT).add(ADD).and(MASK48).shiftRight(16);
-			if (i22.eq(i2)) {
-				var ret = new Random();
-				ret.setOrgSeed(seed);
-				ret.previous();
-				return ret;
-			}
+		if (i2.gt(MASK31)) {
+			i1 = i1.add(1);
 		}
-*/
+		var front = i1.shiftLeft(16);
 		for (var i=0; i < TWO16_RAW; i++) {
 			var seed = front.or(i);
 			var i22 = seed.times(MULT).add(ADD).and(MASK48).shiftRight(16);
@@ -62,7 +54,7 @@ var javaRandom = (function(seed) {
 
 	Random.prototype.next = function(bits) {
 		this.seed = this.seed.times(MULT).add(ADD).and(MASK48);
-		return fixInt(this.seed.shiftRight(48 - bits).and(MASK32));
+		return numHelper.fixInt(this.seed.shiftRight(48 - bits).and(MASK32));
 	}
 
 	Random.prototype.previous = function() {
@@ -82,25 +74,7 @@ var javaRandom = (function(seed) {
 	}
 
 	Random.prototype.nextLong = function() {
-		return fixLong(numHelper.breakInt(this.next(32)).shiftLeft(32).or(numHelper.breakInt(this.next(32))));
-	}
-
-	function fixInt(i) {
-		var ret = i.and(MASK32);
-		if (ret.gt(MASK31)) {
-			return ret.xor(MASK32).add(1).negate();
-		} else {
-			return ret;
-		}
-	}
-
-	function fixLong(i) {
-		var ret = i.and(MASK64);
-		if (ret.gt(MASK63)) {
-			return ret.xor(MASK64).add(1).negate();
-		} else {
-			return ret;
-		}
+		return numHelper.fixLong(this.next(32).shiftLeft(32).add(this.next(32)));
 	}
 
 	return RandomClass;
