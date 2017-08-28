@@ -5,12 +5,13 @@
   <meta charset="utf-8">
 
   <title>Minecraft Seedtype Info</title>
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <meta name="description" content="Displays information about how a seed was entered when creating a Minecraft World">
   <meta name="author" content="Panda4994">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
   <style>
     body {
+      background-color: #34251a;
       background-image: url("img/background.png");
       background-repeat: repeat;
       text-align: center;
@@ -33,7 +34,7 @@
       width: 300px;
       padding: 10px;
       font-size: 20px;
-      background-color: #a0a0a0;
+      background-color: #6e6e6e;
       color: #ffffff;
       border-style: none;
       margin: 40px 0px;
@@ -85,6 +86,15 @@
     .listelement.no {
       background-color: #aa0000;
       display: none;
+    }
+    .noscript {
+      background-color: #aa0000;
+      padding: 10px;
+      margin: 10px;
+      border-style: solid;
+      border-color: #a0a0a0;
+      text-align: left;
+      overflow: auto;
     }
     .listelement.info {
       background-color: #0000aa;
@@ -161,6 +171,17 @@
 		<input type="text" class="mcfield" placeholder="Seed..." id="seedIn" onkeypress="handleSeedInput(event)"><br>
 		<input type="submit" class="mcbtn" value="Generate Seed Infos!" id="subIn"><br>
 		<div class="mcbox2">
+			<noscript>
+				<div class="noscript" id="noscript">
+					<img class="listimg" src="img/logo_redmark_black.png"></img>
+					<div class="listdesc">
+						<div class="listhead">This tool requires JavaScript</div>
+						<div class="listtext">
+							If you want to use this tool you have to allow scripts for this site, or switch to a browser that supports JavaScript.
+						</div>
+					</div>
+				</div>
+			</noscript>
 			<div class="listelement info" id="about" style="display:inherit">
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
