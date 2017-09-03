@@ -8,7 +8,7 @@
   <meta name="description" content="Displays information about how a seed was entered when creating a Minecraft World">
   <meta name="author" content="Panda4994">
 
-  <link rel="stylesheet" href="img/Main.css"></link>
+  <link rel="stylesheet" href="styles.css"></link>
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
@@ -23,7 +23,7 @@
 					<img class="listimg" src="img/logo_redmark_black.png"></img>
 					<div class="listdesc">
 						<div class="listhead">This tool requires JavaScript</div>
-						<div>If you want to use this tool you have to allow scripts for this site, or switch to a browser that supports JavaScript.</div>
+						<div class="listtext">If you want to use this tool you have to allow scripts for this site, or switch to a browser that supports JavaScript.</div>
 					</div>
 				</div>
 			</noscript>
@@ -31,7 +31,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">About this tool</div>
-					<div>
+					<div class="listtext">
 						This tool shows some information about Minecraft seeds.<br>
 						It was made by <a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">Panda4994</a>.<br>
 						<a href="https://www.youtube.com/watch?v=OLS7CCgNcuY" target="_blank" style="color: #6666ff;">This video</a> can hopefully give you a rough idea what this is all about :-)<br>
@@ -42,7 +42,7 @@
 				<img class="listimg" src="img/logo_redmark.png"></img>
 				<div class="listdesc">
 					<div class="listhead">The Limit is 32 letters!</div>
-					<div>
+					<div class="listtext">
 						When creating a Minecraft world you can not enter more than 32 letters as Seed in the GUI.<br>
 						This tool will ignore this limitation as you could enter longer seeds in the server.properties of a Minecraft Server.<br>
 					</div>
@@ -55,7 +55,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a text</div>
-					<div>
+					<div class="listtext">
 						When entering a text into the seed field Minecraft will calculate a number from that. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formula)</a><br>
 						Your seed as a number is: <span class="numseed seed"></span><br>
 					</div>
@@ -65,7 +65,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a number but it's taken as a text</div>
-					<div>
+					<div class="listtext">
 						You entered a number but it is too big or too small.<br>
 						In this case the number is threaded like a text and a smaller number is calculated from it. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formula)</a><br>
 						So your seed as a valid number is: <span class="numseed seed"></span>
@@ -76,7 +76,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered <span class="numseed seed">0</span></div>
-					<div>
+					<div class="listtext">
 						This is quite a special seed. Usually Minecraft would generate a random seed in this case, but I will make an exception here so you can see the other information :-)<br>
 						Seed: <span class="numseed seed">0</span>
 					</div>
@@ -86,7 +86,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a valid number</div>
-					<div>
+					<div class="listtext">
 						The number is just taken as the seed, nothing special about it.<br>
 						Seed: <span class="numseed seed"></span>
 					</div>
@@ -96,7 +96,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered nothing</div>
-					<div>
+					<div class="listtext">
 						So I generated a random seed for you as Minecraft would do too :-)<br>
 						Seed: <span class="numseed seed"></span>
 					</div>
@@ -118,7 +118,7 @@
 				<img class="listimg" src="img/logo_seedlost.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Those numbers from Lost</div>
-					<div>No idea what this is about, but here you got an easter egg with it :-)</div>
+					<div class="listtext">No idea what this is about, but here you got an easter egg with it :-)</div>
 				</div>
 			</div>
 			<div class="listelement special" id="seed666">
@@ -129,7 +129,7 @@
 				<img class="listimg" src="img/logo_seed1729.png"></img>
 				<div class="listdesc">
 					<div class="listhead">2 Sums of 2 Cubes!</div>
-					<div>
+					<div class="listtext">
 						= 1³ + 12³<br>
 						= 9³ + 10³<br>
 					</div>
@@ -167,7 +167,7 @@
 				<img class="listimg" src="img/logo_seed123456789.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Basic counting</div>
-					<div>You could score some points in primary school with that!</div>
+					<div class="listtext">You could score some points in primary school with that!</div>
 				</div>
 			</div>
 			<div class="listelement special" id="seedherobrine">
@@ -179,7 +179,7 @@
 				<img class="listimg" src="img/logo_text.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by text<span class="opttext enteredText"> (Duh! You entered a text)</span></div>
-					<div>
+					<div class="listtext">
 						It is possible to get this seed by entering a text.<br>
 						<b>This is the most probable source of this seed.</b><br>
 						Some texts you could use: <span class="textseed 1"></span> <span class="textseed 2"></span> <span class="textseed 3"></span> <span class="textseed 4"></span> <span class="textseed 5"></span> <span class="textseed 6"></span> <span class="textseed 7"></span> <span class="textseed 8"></span> <span class="textseed 9"></span> <span class="textseed 10"></span> <span class="textseed 11"></span> <span class="textseed 12"></span> <span class="textseed 13"></span> <span class="textseed 14"></span> <span class="textseed 15"></span> <span class="textseed 16"></span> <span class="textseed 17"></span> <span class="textseed 18"></span> <span class="textseed 19"></span> <span class="textseed 20"></span>
@@ -190,14 +190,14 @@
 				<img class="listimg" src="img/logo_notext.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by text</div>
-					<div>There is no text that would create this seed.</div>
+					<div class="listtext">There is no text that would create this seed.</div>
 				</div>
 			</div>
 			<div class="listelement yes" id="byRandom">
 				<img class="listimg" src="img/logo_random.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by random choice</div>
-					<div>
+					<div class="listtext">
 						It is possible to get this seed by entering nothing or <span class="numseed zero">0</span>.<br>
 						In these cases Minecraft will randomly generate a seed. Your seed could have been the result of that.<br>
 						<span class="opttext randomLikely"><b>This is the most probable source of this seed.</b></span>
@@ -208,7 +208,7 @@
 				<img class="listimg" src="img/logo_norandom.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by random choice</div>
-					<div>
+					<div class="listtext">
 						Letting the game choose a random seed by entering nothing or <span class="numseed zero">0</span> will never result in this seed.<br>
 					</div>
 				</div>
@@ -217,7 +217,7 @@
 				<img class="listimg" src="img/logo_number.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by entering it as a number</div>
-					<div>
+					<div class="listtext">
 						It is possible to get this seed by entering it as a number.<br>
 						This is true for all seeds except <span class="numseed zero">0</span>.<br>
 						<span class="opttext numberCertain"><b>This is the only way to get this seed!</b></span>
@@ -228,7 +228,7 @@
 				<img class="listimg" src="img/logo_nonumber.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by entering it as a number</div>
-					<div>
+					<div class="listtext">
 						It is not possible to get this seed by entering it as a number.<br>
 						<b>This is only true for seed <span class="numseed zero">0</span>!</b>
 					</div>
@@ -238,7 +238,7 @@
 				<img class="listimg" src="img/logo_time.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Time of generation</div>
-					<div>
+					<div class="listtext">
 						This is mostly theoretical. But if you were to generate a new Minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
 						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happened though.
 					</div>
@@ -248,7 +248,7 @@
 				<img class="listimg" src="img/logo_notime.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Time of generation</div>
-					<div>
+					<div class="listtext">
 						This is mostly theoretical. But if you were to generate a new Minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
 						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happened though.<br>
 						For your seed it's very obviously not true, looking at the date.<br>
@@ -259,7 +259,7 @@
 				<img class="listimg" src="img/logo_similar.png"></img>
 				<div class="listdesc">
 					<div class="listhead">It's one of 65536 similar seeds</div>
-					<div>
+					<div class="listtext">
 						This is true for every seed. The base for this seed is <span class="numseed base"></span>.<br>
 						Some of the similar seeds: <span class="numseed 1"></span> <span class="numseed 2"></span> <span class="numseed 3"></span> <span class="numseed 4"></span> <span class="numseed 5"></span> <span class="numseed 6"></span> <span class="numseed 7"></span> <span class="numseed 8"></span> <span class="numseed 9"></span> <span class="numseed 10"></span> <span class="numseed 11"></span> <span class="numseed 12"></span> <span class="numseed 13"></span> <span class="numseed 14"></span> <span class="numseed 15"></span> <span class="numseed 16"></span> <span class="numseed 17"></span> <span class="numseed 18"></span> <span class="numseed 19"></span> <span class="numseed 20"></span><br>
 						<a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">More on similar seeds in the future.</a>
