@@ -113,7 +113,9 @@ var showSeedInfo = (function(undefined) {
 	}
 
 	function doStuff(str) {
-		document.location.hash = encodeURIComponent(str);
+		if (str !== "") {
+			document.location.hash = encodeURIComponent(str);
+		}
 		setDisplayById("loading", "inherit");
 		setDisplayByClassName("opttext", "none");
 		setDisplayByClassName("listelement", "none");
@@ -128,6 +130,9 @@ var showSeedInfo = (function(undefined) {
 			}
 			w = new Worker("js/webworker.js");
 			w.addEventListener('message', function(e) {
+				if (e.data.enteredNothing) {
+					document.location.hash = encodeURIComponent(e.data.seed.toString());
+				}
 				setValues(e.data);
 			}, false);
 		}
