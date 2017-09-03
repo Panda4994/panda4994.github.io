@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -9,159 +8,7 @@
   <meta name="description" content="Displays information about how a seed was entered when creating a Minecraft World">
   <meta name="author" content="Panda4994">
 
-  <style>
-    body {
-      background-color: #34251a;
-      background-image: url("img/background.png");
-      background-repeat: repeat;
-      text-align: center;
-    }
-    .maindiv {
-      text-align: center;
-      padding: 60px 25%;
-    }
-    .mcfield {
-      width: 100%;
-      padding: 10px;
-      font-size: 20px;
-      background-color: #000000;
-      color: #ffffff;
-      border-style: solid;
-      border-width: 3px;
-      border-color: #a0a0a0;
-    }
-    .mcbtn {
-      width: 300px;
-      padding: 10px;
-      font-size: 20px;
-      background-color: #6e6e6e;
-      color: #ffffff;
-      border-style: none;
-      margin: 40px 0px;
-      background-image: url("img/button.png");
-      background-size: 100% 100%;
-    }
-    .mcbox {
-      width: 100%;
-      height: 400px;
-      padding: 10px;
-      font-size: 20px;
-      background-color: #000000;
-      color: #ffffff;
-      border-style: solid;
-      border-width: 3px;
-      border-color: #0f0f0f;
-    }
-    .mcbox2 {
-      height: auto;
-      min-height: 800px;
-      padding: 0px;
-      font-size: 20px;
-      background-color: #000000;
-      color: #ffffff;
-      border-style: solid;
-      border-width: 3px;
-      border-color: #0f0f0f;
-      margin: 0px auto;
-    }
-    .listloading {
-      padding: 10px;
-      margin: 10px;
-      border-style: none;
-      display: none;
-    }
-    .listelement {
-      padding: 10px;
-      margin: 10px;
-      border-style: solid;
-      border-color: #a0a0a0;
-      display: none;
-      text-align: left;
-      overflow: auto;
-    }
-    .listelement.yes {
-      background-color: #00aa00;
-      display: none;
-    }
-    .listelement.no {
-      background-color: #aa0000;
-      display: none;
-    }
-    .noscript {
-      background-color: #aa0000;
-      padding: 10px;
-      margin: 10px;
-      border-style: solid;
-      border-color: #a0a0a0;
-      text-align: left;
-      overflow: auto;
-    }
-    .listelement.info {
-      background-color: #0000aa;
-      display: none;
-    }
-    .listelement.special {
-      background-color: #aaaa00;
-      display: none;
-    }
-    .textseed {
-      background-color: #666666;
-      padding: 0px 2px;
-      font-size: 16px;
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 2%;
-      border-color: #999999;
-    }
-    .genTime {
-      background-color: #666666;
-      padding: 0px 2px;
-      font-size: 16px;
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 2%;
-      border-color: #999999;
-    }
-    .numseed {
-      background-color: #666666;
-      padding: 0px 2px;
-      font-size: 16px;
-      border-style: solid;
-      border-width: 2px;
-      border-radius: 2%;
-      border-color: #999999;
-    }
-    .listimg {
-      float: left;
-      margin-right: 10px;
-    }
-    .listdesc {
-      float: initial;
-      padding: 0px 5px;
-    }
-    .listhead {
-      font-size: 30px;
-    }
-    .listtext {
-    }
-    @media only screen and (max-width: 420px) {
-      .listimg {
-        height: 30%;
-        width: 30%;
-      }
-    }
-    @media only screen and (max-width: 950px) {
-      .maindiv {
-        padding: 60px 0%;
-      }
-      .listhead {
-        font-size: 20px;
-      }
-      .listtext {
-        font-size: 16px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="img/Main.css"></link>
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
@@ -176,9 +23,7 @@
 					<img class="listimg" src="img/logo_redmark_black.png"></img>
 					<div class="listdesc">
 						<div class="listhead">This tool requires JavaScript</div>
-						<div class="listtext">
-							If you want to use this tool you have to allow scripts for this site, or switch to a browser that supports JavaScript.
-						</div>
+						<div>If you want to use this tool you have to allow scripts for this site, or switch to a browser that supports JavaScript.</div>
 					</div>
 				</div>
 			</noscript>
@@ -186,7 +31,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">About this tool</div>
-					<div class="listtext">
+					<div>
 						This tool shows some information about Minecraft seeds.<br>
 						It was made by <a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">Panda4994</a>.<br>
 						<a href="https://www.youtube.com/watch?v=OLS7CCgNcuY" target="_blank" style="color: #6666ff;">This video</a> can hopefully give you a rough idea what this is all about :-)<br>
@@ -197,7 +42,7 @@
 				<img class="listimg" src="img/logo_redmark.png"></img>
 				<div class="listdesc">
 					<div class="listhead">The Limit is 32 letters!</div>
-					<div class="listtext">
+					<div>
 						When creating a Minecraft world you can not enter more than 32 letters as Seed in the GUI.<br>
 						This tool will ignore this limitation as you could enter longer seeds in the server.properties of a Minecraft Server.<br>
 					</div>
@@ -210,7 +55,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a text</div>
-					<div class="listtext">
+					<div>
 						When entering a text into the seed field Minecraft will calculate a number from that. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formula)</a><br>
 						Your seed as a number is: <span class="numseed seed"></span><br>
 					</div>
@@ -220,7 +65,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a number but it's taken as a text</div>
-					<div class="listtext">
+					<div>
 						You entered a number but it is too big or too small.<br>
 						In this case the number is threaded like a text and a smaller number is calculated from it. <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html#hashCode--" target="_blank" style="color: #6666ff;">(used formula)</a><br>
 						So your seed as a valid number is: <span class="numseed seed"></span>
@@ -231,7 +76,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered <span class="numseed seed">0</span></div>
-					<div class="listtext">
+					<div>
 						This is quite a special seed. Usually Minecraft would generate a random seed in this case, but I will make an exception here so you can see the other information :-)<br>
 						Seed: <span class="numseed seed">0</span>
 					</div>
@@ -241,7 +86,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered a valid number</div>
-					<div class="listtext">
+					<div>
 						The number is just taken as the seed, nothing special about it.<br>
 						Seed: <span class="numseed seed"></span>
 					</div>
@@ -251,7 +96,7 @@
 				<img class="listimg" src="img/logo_infoi.png"></img>
 				<div class="listdesc">
 					<div class="listhead">You entered nothing</div>
-					<div class="listtext">
+					<div>
 						So I generated a random seed for you as Minecraft would do too :-)<br>
 						Seed: <span class="numseed seed"></span>
 					</div>
@@ -259,44 +104,32 @@
 			</div>
 			<div class="listelement special" id="seed3">
 				<img class="listimg" src="img/logo_seed3.png"></img>
-				<div class="listdesc">
-					<div class="listhead">Pi is exactly 3!</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">Pi is exactly 3!</div>
 			</div>
 			<div class="listelement special" id="seed616">
 				<img class="listimg" src="img/logo_seed616.png"></img>
-				<div class="listdesc">
-					<div class="listhead">The real number for the beast!</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">The real number for the beast!</div>
 			</div>
 			<div class="listelement special" id="seed42">
 				<img class="listimg" src="img/logo_seed42.png"></img>
-				<div class="listdesc">
-					<div class="listhead">The meaning of life the universe and everything</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">The meaning of life the universe and everything</div>
 			</div>
 			<div class="listelement special" id="seed4815162342">
 				<img class="listimg" src="img/logo_seedlost.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Those numbers from Lost</div>
-					<div class="listtext">No idea what this is about, but here you got an easter egg with it :-)</div>
+					<div>No idea what this is about, but here you got an easter egg with it :-)</div>
 				</div>
 			</div>
 			<div class="listelement special" id="seed666">
 				<img class="listimg" src="img/logo_seed666.png"></img>
-				<div class="listdesc">
-					<div class="listhead">The number of the beast</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">The number of the beast</div>
 			</div>
 			<div class="listelement special" id="seed1729">
 				<img class="listimg" src="img/logo_seed1729.png"></img>
 				<div class="listdesc">
 					<div class="listhead">2 Sums of 2 Cubes!</div>
-					<div class="listtext">
+					<div>
 						= 1³ + 12³<br>
 						= 9³ + 10³<br>
 					</div>
@@ -304,73 +137,49 @@
 			</div>
 			<div class="listelement special" id="seed13">
 				<img class="listimg" src="img/logo_seed13.png"></img>
-				<div class="listdesc">
-					<div class="listhead">Good luck with that world...</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">Good luck with that world...</div>
 			</div>
 			<div class="listelement special" id="seed1337">
 				<img class="listimg" src="img/logo_seed1337.png"></img>
-				<div class="listdesc">
-					<div class="listhead">1337 533d</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">1337 533d</div>
 			</div>
 			<div class="listelement special" id="seed404">
 				<img class="listimg" src="img/logo_seed404.png"></img>
-				<div class="listdesc">
-					<div class="listhead">404 - Seed not found</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">404 - Seed not found</div>
 			</div>
 			<div class="listelement special" id="seed420">
 				<img class="listimg" src="img/logo_seed420.png"></img>
-				<div class="listdesc">
-					<div class="listhead">The number between 419 and 421</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">The number between 419 and 421</div>
 			</div>
 			<div class="listelement special" id="seed69">
 				<img class="listimg" src="img/logo_seed69.png"></img>
-				<div class="listdesc">
-					<div class="listhead">Oh come on. Grow up!</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">Oh come on. Grow up!</div>
 			</div>
 			<div class="listelement special" id="seed4994">
 				<img class="listimg" src="img/logo_seed4994.png"></img>
-				<div class="listdesc">
-					<div class="listhead">Hey there :-)</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">Hey there :-)</div>
 			</div>
 			<div class="listelement special" id="seed9001">
 				<img class="listimg" src="img/logo_seed9001.png"></img>
-				<div class="listdesc">
-					<div class="listhead"><b>IT'S OVER 9000</b></div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead"><b>IT'S OVER 9000</b></div>
 			</div>
 			<div class="listelement special" id="seed123456789">
 				<img class="listimg" src="img/logo_seed123456789.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Basic counting</div>
-					<div class="listtext">You could score some points in primary school with that!</div>
+					<div>You could score some points in primary school with that!</div>
 				</div>
 			</div>
 			<div class="listelement special" id="seedherobrine">
 				<img class="listimg" src="img/logo_herobrine.png"></img>
-				<div class="listdesc">
-					<div class="listhead">He will ALWAYS return!</div>
-					<div class="listtext"></div>
-				</div>
+				<div class="listdesc listhead">He will ALWAYS return!</div>
 			</div>
 
 			<div class="listelement yes" id="byText">
 				<img class="listimg" src="img/logo_text.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by text<span class="opttext enteredText"> (Duh! You entered a text)</span></div>
-					<div class="listtext">
+					<div>
 						It is possible to get this seed by entering a text.<br>
 						<b>This is the most probable source of this seed.</b><br>
 						Some texts you could use: <span class="textseed 1"></span> <span class="textseed 2"></span> <span class="textseed 3"></span> <span class="textseed 4"></span> <span class="textseed 5"></span> <span class="textseed 6"></span> <span class="textseed 7"></span> <span class="textseed 8"></span> <span class="textseed 9"></span> <span class="textseed 10"></span> <span class="textseed 11"></span> <span class="textseed 12"></span> <span class="textseed 13"></span> <span class="textseed 14"></span> <span class="textseed 15"></span> <span class="textseed 16"></span> <span class="textseed 17"></span> <span class="textseed 18"></span> <span class="textseed 19"></span> <span class="textseed 20"></span>
@@ -381,14 +190,14 @@
 				<img class="listimg" src="img/logo_notext.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by text</div>
-					<div class="listtext">There is no text that would create this seed.</div>
+					<div>There is no text that would create this seed.</div>
 				</div>
 			</div>
 			<div class="listelement yes" id="byRandom">
 				<img class="listimg" src="img/logo_random.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by random choice</div>
-					<div class="listtext">
+					<div>
 						It is possible to get this seed by entering nothing or <span class="numseed zero">0</span>.<br>
 						In these cases Minecraft will randomly generate a seed. Your seed could have been the result of that.<br>
 						<span class="opttext randomLikely"><b>This is the most probable source of this seed.</b></span>
@@ -399,7 +208,7 @@
 				<img class="listimg" src="img/logo_norandom.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by random choice</div>
-					<div class="listtext">
+					<div>
 						Letting the game choose a random seed by entering nothing or <span class="numseed zero">0</span> will never result in this seed.<br>
 					</div>
 				</div>
@@ -408,7 +217,7 @@
 				<img class="listimg" src="img/logo_number.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Possible by entering it as a number</div>
-					<div class="listtext">
+					<div>
 						It is possible to get this seed by entering it as a number.<br>
 						This is true for all seeds except <span class="numseed zero">0</span>.<br>
 						<span class="opttext numberCertain"><b>This is the only way to get this seed!</b></span>
@@ -419,7 +228,7 @@
 				<img class="listimg" src="img/logo_nonumber.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Not possible by entering it as a number</div>
-					<div class="listtext">
+					<div>
 						It is not possible to get this seed by entering it as a number.<br>
 						<b>This is only true for seed <span class="numseed zero">0</span>!</b>
 					</div>
@@ -429,7 +238,7 @@
 				<img class="listimg" src="img/logo_time.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Time of generation</div>
-					<div class="listtext">
+					<div>
 						This is mostly theoretical. But if you were to generate a new Minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
 						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happened though.
 					</div>
@@ -439,7 +248,7 @@
 				<img class="listimg" src="img/logo_notime.png"></img>
 				<div class="listdesc">
 					<div class="listhead">Time of generation</div>
-					<div class="listtext">
+					<div>
 						This is mostly theoretical. But if you were to generate a new Minecraft world, with a random seed, in a really old Java-version (e.g. Java 1.4.2), around <span class="genTime"></span>, in the right millisecond it would get your seed.<br>
 						With Java 1.5 being released long before Minecraft existed, it is unlikely that this ever happened though.<br>
 						For your seed it's very obviously not true, looking at the date.<br>
@@ -450,7 +259,7 @@
 				<img class="listimg" src="img/logo_similar.png"></img>
 				<div class="listdesc">
 					<div class="listhead">It's one of 65536 similar seeds</div>
-					<div class="listtext">
+					<div>
 						This is true for every seed. The base for this seed is <span class="numseed base"></span>.<br>
 						Some of the similar seeds: <span class="numseed 1"></span> <span class="numseed 2"></span> <span class="numseed 3"></span> <span class="numseed 4"></span> <span class="numseed 5"></span> <span class="numseed 6"></span> <span class="numseed 7"></span> <span class="numseed 8"></span> <span class="numseed 9"></span> <span class="numseed 10"></span> <span class="numseed 11"></span> <span class="numseed 12"></span> <span class="numseed 13"></span> <span class="numseed 14"></span> <span class="numseed 15"></span> <span class="numseed 16"></span> <span class="numseed 17"></span> <span class="numseed 18"></span> <span class="numseed 19"></span> <span class="numseed 20"></span><br>
 						<a href="https://www.youtube.com/user/Panda4994" target="_blank" style="color: #6666ff;">More on similar seeds in the future.</a>
@@ -464,42 +273,6 @@
 	<script src="js/NumHelper.js"></script>
 	<script src="js/SeedInfo.js"></script>
 	<script src="js/ShowSeedInfo.js"></script>
-	<script>
-		var preloadedimages = [];
-		function preloadImage(source) {
-			var img = new Image();
-			img.src = source;
-			preloadedimages.push(img);
-		}
-		preloadImage("img/button_clicked.png");
-		preloadImage("img/button_hover.png");
-		preloadImage("img/button.png");
-		var updateOnMouseOverSubIn = true;
-		var mouseOverSubIn = false;
-		var elem = document.getElementById("subIn");
-		elem.addEventListener("mouseover", mouseOver);
-		elem.addEventListener("mouseout", mouseOut);
-		function mouseOver() {
-			if (updateOnMouseOverSubIn) {
-				document.getElementById("subIn").style.backgroundImage = "url('img/button_hover.png')";
-			}
-			mouseOverSubIn = true;
-		}
-		function mouseOut() {
-			if (updateOnMouseOverSubIn) {
-				document.getElementById("subIn").style.backgroundImage = "url('img/button.png')";
-			}
-			mouseOverSubIn = false;
-		}
-
-		function handleSeedInput(ev) {
-			if (ev.keyCode === 13) {
-				showSeedInfo(document.getElementById("seedIn").value);
-			}
-		}
-		document.getElementById("subIn").addEventListener("click", function(ev) {
-			showSeedInfo(document.getElementById("seedIn").value);
-		}, false);
-	</script>
+	<script src="js/Main.js"></script>
 </body>
 </html>
