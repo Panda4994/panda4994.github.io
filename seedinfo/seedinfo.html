@@ -495,16 +495,16 @@
 		function handleSeedInput(ev) {
 			if (ev.keyCode === 13) {
 				showSeedInfo(document.getElementById("seedIn").value);
-				document.location.hash = btoa(document.getElementById("seedIn").value);
+				document.location.hash = encodeURI(document.getElementById("seedIn").value);
 			}
 		}
 		document.getElementById("subIn").addEventListener("click", function(ev) {
 			showSeedInfo(document.getElementById("seedIn").value);
-			document.location.hash = btoa(document.getElementById("seedIn").value);
+			document.location.hash = encodeURI(document.getElementById("seedIn").value);
 		}, false);
 		document.addEventListener("DOMContentLoaded", function() {
 			if (window.location.hash) {
-				var seed = atob(window.location.hash.slice(1));
+				var seed = decodeURI(window.location.hash.slice(1));
 				document.getElementById("seedIn").value = seed;
 				showSeedInfo(seed);
 			}
