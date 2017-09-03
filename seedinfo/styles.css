@@ -1,0 +1,178 @@
+@font-face {
+	font-family: "Minecraftia";
+	src: url(./font/Minecraftia.ttf) format("truetype");
+}
+
+body {
+	background-color: #34251a;
+	background-image: url("./img/background.png");
+	background-repeat: repeat;
+	text-align: center;
+}
+
+* {
+	font-family: Minecraftia;
+}
+
+.maindiv {
+	text-align: center;
+	padding: 60px 25%;
+}
+
+.mcfield {
+	width: 100%;
+	padding: 10px;
+	font-size: 20px;
+	background-color: #000000;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #a0a0a0;
+}
+
+.mcbtn {
+	width: 300px;
+	padding: 10px;
+	font-size: 20px;
+	background-color: #6e6e6e;
+	color: #ffffff;
+	border-style: none;
+	margin: 40px 0px;
+	background-image: url("./img/button.png");
+	background-size: 100% 100%;
+}
+
+.mcbox {
+	width: 100%;
+	height: 400px;
+	padding: 10px;
+	font-size: 20px;
+	background-color: #000000;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #0f0f0f;
+}
+
+.mcbox2 {
+	height: auto;
+	min-height: 800px;
+	padding: 0px;
+	font-size: 20px;
+	background-color: #000000;
+	color: #ffffff;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #0f0f0f;
+	margin: 0px auto;
+}
+
+.listloading {
+	padding: 10px;
+	margin: 10px;
+	border-style: none;
+	display: none;
+}
+
+.listelement {
+	padding: 10px;
+	margin: 10px;
+	border-style: solid;
+	border-color: #a0a0a0;
+	display: none;
+	text-align: left;
+	overflow: auto;
+}
+
+.listelement.yes {
+	background-color: #00aa00;
+	display: none;
+}
+
+.listelement.no {
+	background-color: #aa0000;
+	display: none;
+}
+
+.noscript {
+	background-color: #aa0000;
+	padding: 10px;
+	margin: 10px;
+	border-style: solid;
+	border-color: #a0a0a0;
+	text-align: left;
+	overflow: auto;
+}
+
+.listelement.info {
+	background-color: #0000aa;
+	display: none;
+}
+
+.listelement.special {
+	background-color: #aaaa00;
+	display: none;
+}
+
+.textseed {
+	background-color: #666666;
+	padding: 0px 2px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 2%;
+	border-color: #999999;
+}
+
+.genTime {
+	background-color: #666666;
+	padding: 0px 2px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 2%;
+	border-color: #999999;
+}
+
+.numseed {
+	background-color: #666666;
+	padding: 0px 2px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 2%;
+	border-color: #999999;
+}
+
+.listimg {
+	float: left;
+	margin-right: 10px;
+}
+
+.listdesc {
+	float: initial;
+	padding: 0px 5px;
+}
+
+.listhead {
+	font-size: 30px;
+}
+
+@media only screen and (max-width: 420px) {
+	.listimg {
+		height: 30%;
+		width: 30%;
+	}
+}
+
+@media only screen and (max-width: 950px) {
+	.maindiv {
+		padding: 60px 0%;
+	}
+	.listhead {
+		font-size: 20px;
+	}
+	.listtext {
+		font-size: 16px;
+	}
+}
