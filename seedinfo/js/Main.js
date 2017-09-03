@@ -38,3 +38,11 @@ function handleSeedInput(ev) {
 document.getElementById("subIn").addEventListener("click", function(ev) {
 	showSeedInfo(document.getElementById("seedIn").value);
 }, false);
+
+document.addEventListener("DOMContentLoaded", function() {
+	if (window.location.hash) {
+		var strSeed = decodeURIComponent(window.location.hash.slice(1));
+		document.getElementById("seedIn").value = strSeed;
+		showSeedInfo(strSeed);
+	}
+});

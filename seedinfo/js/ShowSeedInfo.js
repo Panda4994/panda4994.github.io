@@ -113,6 +113,7 @@ var showSeedInfo = (function(undefined) {
 	}
 
 	function doStuff(str) {
+		document.location.hash = encodeURIComponent(str);
 		setDisplayById("loading", "inherit");
 		setDisplayByClassName("opttext", "none");
 		setDisplayByClassName("listelement", "none");
