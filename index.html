@@ -66,11 +66,11 @@
 				var res = GENC_Begin;
 				for (var i = 0; i < commands.length; i++) {
 					var escaped = commands[i].replace(/\\/g,"\\\\").replace(/\"/g,"\\\"");
-					if (escaped === commands[i] && commands[i].search(",") < 0) {
-						res += GENC_Front + escaped + GENC_End;
-					} else {
+					//if (escaped === commands[i] && commands[i].search(",") < 0) {
+					//	res += GENC_Front + escaped + GENC_End;
+					//} else {
 						res += GENC_Front + "\"" + escaped + "\"" + GENC_End;
-					}
+					//}
 				}
 				res += GENC_Finish;
 				return res;
