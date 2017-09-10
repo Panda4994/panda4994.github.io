@@ -59,7 +59,7 @@
 			var GENC_Front=",\n\t{id:commandblock_minecart,Command:";
 			var GENC_End="}";
 			var GENC_Finish="\n]}";
-			var GENC_CleanBlocks=["setblock ~ ~-2 ~ command_block 0 replace {SuccessCount:0b,auto:1b,Command:fill ~ ~ ~ ~ ~2 ~ air}"];
+			var GENC_CleanBlocks=["setblock ~ ~-2 ~ command_block 0 replace {SuccessCount:0b,auto:1b,Command:\\\"fill ~ ~ ~ ~ ~2 ~ air\\\"}"];
 			var GENC_CleanCarts=["kill @e[type=commandblock_minecart,r=0]"];
 
 			function GENC_GenCommand(commands) {
